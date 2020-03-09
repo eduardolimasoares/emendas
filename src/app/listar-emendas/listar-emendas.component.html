@@ -1,0 +1,120 @@
+<div class="container-fluid bg-info text-light">
+  <br>
+  <h2 >Busca Emendas Parlamentares</h2>
+  <br>
+</div>
+
+
+<div class="container-fluid">
+  <br>
+  <div class="form-group" >
+    <div class="row">
+      <div class="col-9">
+        <input type="text" class="form-control" placeholder="Digite um termo de pesquisa" #termoDaPesquisa>
+        <!-- <input type="text" class="form-control" placeholder="Digite um termo de pesquisa" #termoDaPesquisa
+          (keyup)="generateReports(termoDaPesquisa.value)"> -->
+      </div>
+      <div class="col-3">
+        <button type="button" (click)=generateReports(termoDaPesquisa.value) class="btn btn-primary floar-rigth">Pesquisar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-deck mt-4 mb-4">
+  <div class="card text-center text-white bg-success">
+    <div class="card-header">Quantidades de Emendas</div>
+    <div class="card-body"><h4>R${{qtEmendas}}</h4></div>
+  </div>
+
+  <div class="card text-center text-white bg-danger">
+    <div class="card-header">Valor Empenhado</div>
+    <div class="card-body"><h4>R${{qtEmpenhado}}</h4></div>
+  </div>
+
+  <div class="card text-center text-white bg-warning">
+    <div class="card-header">Valor Liberado</div>
+    <div class="card-body"><h4>R${{qtLiberado}}</h4></div>
+  </div>
+
+  <div class="card text-center text-white bg-info">
+    <div class="card-header">Valor Concluido</div>
+    <div class="card-body"><h4>R${{qtConcluido}}</h4></div>
+  </div>
+  
+</div>
+
+
+<!-- <div class="container-fluid">
+
+  <div class="row" style="height: 40vh;">
+    <div class="col-3">
+      <div class="form-group">
+        <label for="autor">Autor</label>
+        <select #autor name="Autor" id="autor" class="form-control">
+          <option value="">Autor</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-9">
+      Coluna direita
+    </div>
+  </div>
+
+</div> -->
+
+<div class="container-fluid">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+        <h3>
+            Loading...
+        </h3>
+        
+    </div>
+  </ng-template>
+  
+
+
+  <table class="table table-hover table-sm table-responsive">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ano</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Municipio</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Região</th>
+        <th scope="col">Função</th>
+        <th scope="col">subfunção</th>
+        <th scope="col">Empenhado</th>
+        <th scope="col">Liquidado</th>
+        <th scope="col">Pago</th>
+        <th scope="col">Resto Pagar Inscritos</th>
+        <th scope="col">Resto Pagar Cancelados</th>
+        <th scope="col">Resto Pagar Pagos</th>
+      </tr>
+    </thead>
+    <!-- <tbody *ngFor="let item of emendas | async"> -->
+    <tbody *ngFor="let item of emendas">
+      <tr>
+        <td>{{item.ano}}</td>
+        <td>{{item.autor}}</td>
+        <td>{{item.municipio}}</td>
+        <td>{{item.estado}}</td>
+        <td>{{item.regiao}}</td>
+        <td>{{item.funcao}}</td>
+        <td>{{item.subfuncao}}</td>
+        <td>R$ {{item.empenhado}}</td>
+        <td>R$ {{item.liquidado}}</td>
+        <td>R$ {{item.pago}}</td>
+        <td>R$ {{item.restosPagarInscritos}}</td>
+        <td>R$ {{item.restosPagarCancelados}}</td>
+        <td>R$ {{item.restosPagarPagos}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+</div>
+
